@@ -22,7 +22,7 @@ export default class SignInPage extends Component {
 
   render() {
     if (this.state.loading) {
-        return <Expo.AppLoading />;
+        return <Expo.AppLoading />;//123456
       }
     return (
       <Container>
