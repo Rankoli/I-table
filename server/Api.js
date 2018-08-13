@@ -1,5 +1,6 @@
 import axios from 'axios';
 
 export default axios.create({
-  baseURL: `http://localhost:60129/Services.asmx`
+  baseURL: `http://ruppinmobile.tempdomain.co.il/site02/WebService.asmx/`
+  
 });

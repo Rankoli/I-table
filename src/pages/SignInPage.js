@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Header, Content, Item, Input, Icon , Button } from 'native-base';
+import { Container, Header, Content, Item, Input, Icon , Button,Text } from 'native-base';
 import {View} from 'react-native';
 import Expo from "expo";
 import { StatusBar } from "react-native";
@@ -10,7 +10,7 @@ export default class SignInPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          loading: true
+          loading: true,
           username:"",
           password:""
          };
@@ -26,17 +26,26 @@ export default class SignInPage extends Component {
     }
 
     handleUserNameTextChanged = (e) => {
-      this.setState({username: e.target.value });
+
+      this.setState(() => ({username:e.target.value}));
     }
 
     handlePasswordChange = (e) => {
-      this.setState({password: e.target.value});
+  
+      this.setState(() => ({password:e.target.value}));
     }
 
     handleSubmit = () => {
-      Api.post("Login",{this.username,this.password}).then((Response) => {
+      const userName = this.state.username;
+      const password = this.state.password;
+
+      
+    
+     return Api.post('Login',{userName, password}).then((Response) => {
+        debugger;
         const user = JSON.parse(Response.data.d);
-      }).catch((error) = > {
+      
+      }).catch((error) => {
         console.log(error);
       })
     }
@@ -50,7 +59,9 @@ export default class SignInPage extends Component {
         <Header  style={{marginTop:StatusBar.currentHeight,backgroundColor:"#364051"}} />
         <Content>
           <Item error>
-            <Input placeholder='First Name' onChange={this.handleUserNameTextChanged} />
+            <Input placeholder='First Name' 
+             onChangeText={(username) => this.setState({username})}
+            value={this.state.username} />
             <Icon name='checkmark-circle' />
           </Item>
 
@@ -65,7 +76,9 @@ export default class SignInPage extends Component {
           </Item>
 
           <Item success>
-            <Input placeholder='Password' onChange={this.handlePasswordChange}/>
+            <Input placeholder='Password'
+             onChangeText={(password) => this.setState({password})}
+             value={this.state.password} />
             <Icon name='checkmark-circle' />
           </Item>
 
