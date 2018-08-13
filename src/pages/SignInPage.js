@@ -1,14 +1,19 @@
 import React, { Component } from 'react';
-import { Container, Header, Content, Item, Input, Icon } from 'native-base';
+import { Container, Header, Content, Item, Input, Icon , Button } from 'native-base';
 import {View} from 'react-native';
 import Expo from "expo";
 import { StatusBar } from "react-native";
+import Api from '../../server/Api';
 
 export default class SignInPage extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { loading: true };
+        this.state = {
+          loading: true
+          username:"",
+          password:""
+         };
       }
 
     async componentWillMount() {
@@ -20,6 +25,22 @@ export default class SignInPage extends Component {
         this.setState({ loading: false });
     }
 
+    handleUserNameTextChanged = (e) => {
+      this.setState({username: e.target.value });
+    }
+
+    handlePasswordChange = (e) => {
+      this.setState({password: e.target.value});
+    }
+
+    handleSubmit = () => {
+      Api.post("Login",{this.username,this.password}).then((Response) => {
+        const user = JSON.parse(Response.data.d);
+      }).catch((error) = > {
+        console.log(error);
+      })
+    }
+
   render() {
     if (this.state.loading) {
         return <Expo.AppLoading />;//123456
@@ -29,7 +50,7 @@ export default class SignInPage extends Component {
         <Header  style={{marginTop:StatusBar.currentHeight,backgroundColor:"#364051"}} />
         <Content>
           <Item error>
-            <Input placeholder='First Name'/>
+            <Input placeholder='First Name' onChange={this.handleUserNameTextChanged} />
             <Icon name='checkmark-circle' />
           </Item>
 
@@ -44,7 +65,7 @@ export default class SignInPage extends Component {
           </Item>
 
           <Item success>
-            <Input placeholder='Password'/>
+            <Input placeholder='Password' onChange={this.handlePasswordChange}/>
             <Icon name='checkmark-circle' />
           </Item>
 
@@ -52,6 +73,13 @@ export default class SignInPage extends Component {
             <Input placeholder='Confirm Password'/>
             <Icon name='checkmark-circle' />
           </Item>
+
+          <Item>
+          <Button onPress={this.handleSubmit}>
+            <Text>Login</Text>
+          </Button>
+          </Item>
+
 
         </Content>
       </Container>
