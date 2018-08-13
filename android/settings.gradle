@@ -1,0 +1,3 @@
+rootProject.name = 'i-table-crna'
+
+include ':app'
