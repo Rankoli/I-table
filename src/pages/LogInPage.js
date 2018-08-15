@@ -12,11 +12,6 @@ export default class SignInPage extends Component {
         this.state = {
           loading: true,
           username:"",
-          firstname:"",
-          lastname:"",
-          age:"",
-          telephone:"",
-          picture:"",
           password:""
          };
       }
@@ -30,20 +25,24 @@ export default class SignInPage extends Component {
         this.setState({ loading: false });
     }
 
+    handleUserNameTextChanged = (e) => {
+
+      this.setState(() => ({username:e.target.value}));
+    }
+
+    handlePasswordChange = (e) => {
+  
+      this.setState(() => ({password:e.target.value}));
+    }
 
     handleSubmit = () => {
       const userName = this.state.username;
-      const Fname=this.state.firstname;
-      const Lname = this.state.lastname;
-      const Age = this.state.age;
-      const Telephone = this.state.telephone;
-      const Picture = this.state.picture;
-      const Password = this.state.password;
+      const password = this.state.password;
 
       
-      debugger;
-     return Api.post('InsertUser',{userName, Fname, Lname, Age, Telephone, Picture, Password}).then((Response) => {
-      
+    
+     return Api.post('Login',{userName, password}).then((Response) => {
+        debugger;
         const user = JSON.parse(Response.data.d);
       
       }).catch((error) => {
@@ -59,46 +58,10 @@ export default class SignInPage extends Component {
       <Container>
         <Header  style={{marginTop:StatusBar.currentHeight,backgroundColor:"#364051"}} />
         <Content>
-
-        <Item error>
+          <Item error>
             <Input placeholder='User Name' 
              onChangeText={(username) => this.setState({username})}
             value={this.state.username} />
-            <Icon name='checkmark-circle' />
-          </Item>
-
-          <Item error>
-            <Input placeholder='First Name' 
-             onChangeText={(firstname) => this.setState({firstname})}
-            value={this.state.firstname} />
-            <Icon name='checkmark-circle' />
-          </Item>
-
-          <Item success>
-            <Input placeholder='LastName'
-            onChangeText={(lastname) => this.setState({lastname})}
-            value={this.state.lastname}/>
-            <Icon name='checkmark-circle' />
-          </Item>
-
-          <Item success>
-            <Input placeholder='Age'
-            onChangeText={(age) => this.setState({age})}
-            value={this.state.age}/>
-            <Icon name='checkmark-circle' />
-          </Item>
-
-          <Item error>
-            <Input placeholder='Telephone' 
-             onChangeText={(telephone) => this.setState({telephone})}
-            value={this.state.telephone} />
-            <Icon name='checkmark-circle' />
-          </Item>
-
-          <Item error>
-            <Input placeholder='Picture' 
-             onChangeText={(picture) => this.setState({picture})}
-            value={this.state.picture} />
             <Icon name='checkmark-circle' />
           </Item>
 
@@ -109,16 +72,12 @@ export default class SignInPage extends Component {
             <Icon name='checkmark-circle' />
           </Item>
 
-          <Item success>
-            <Input placeholder='Confirm Password'/>
-            <Icon name='checkmark-circle' />
-          </Item>
-
           <Item>
           <Button onPress={this.handleSubmit}>
-            <Text>Sign In</Text>
+            <Text>Login</Text>
           </Button>
           </Item>
+          
 
 
         </Content>

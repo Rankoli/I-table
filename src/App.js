@@ -3,12 +3,13 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import {Container} from 'native-base';
 import SignInPage from './pages/SignInPage';
+import LogInPage from './pages/LogInPage';
 
 class App extends React.Component {
   render() {
     return (
               <Container>
-              <SignInPage />
+              <LogInPage />
               </Container>
             );
   }
