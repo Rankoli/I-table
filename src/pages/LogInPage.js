@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { Container, Header, Content, Item, Input, Icon , Button,Text } from 'native-base';
 import {View} from 'react-native';
 import Expo from "expo";
-import { StatusBar } from "react-native";
+import { StatusBar, TouchableOpacity } from "react-native";
 import Api from '../../server/Api';
 
-export default class SignInPage extends Component {
+export default class LogInPage extends Component {
 
     constructor(props) {
         super(props);
@@ -77,6 +77,13 @@ export default class SignInPage extends Component {
             <Text>Login</Text>
           </Button>
           </Item>
+
+          <TouchableOpacity onPress={() => {
+            this.props.navigation.navigate('SignInPage');
+          }}>
+            <Text  >
+             Registration</Text>
+          </TouchableOpacity>
           
 
 

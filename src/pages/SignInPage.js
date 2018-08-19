@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Container, Header, Content, Item, Input, Icon , Button,Text } from 'native-base';
-import {View} from 'react-native';
+import {View,TouchableOpacity} from 'react-native';
 import Expo from "expo";
 import { StatusBar } from "react-native";
 import Api from '../../server/Api';
@@ -99,7 +99,9 @@ export default class SignInPage extends Component {
             <Input placeholder='Picture' 
              onChangeText={(picture) => this.setState({picture})}
             value={this.state.picture} />
-            <Icon name='checkmark-circle' />
+            <TouchableOpacity onPress={() => {
+              this.props.navigation.navigate('Camera');
+            }}><Icon name='camera' /></TouchableOpacity>
           </Item>
 
           <Item success>
