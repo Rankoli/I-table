@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Header, Content, Item, Input, Icon , Button,Text } from 'native-base';
+import { Container, Header, Content, Item, Input, Icon , Button,Text,center, Body } from 'native-base';
 import {View} from 'react-native';
 import Expo from "expo";
 import { StatusBar, TouchableOpacity } from "react-native";
@@ -72,6 +72,9 @@ export default class LogInPage extends Component {
             <Icon name='checkmark-circle' />
           </Item>
 
+
+          <Body>
+
           <Item>
           <Button onPress={this.handleSubmit}>
             <Text>Login</Text>
@@ -79,11 +82,13 @@ export default class LogInPage extends Component {
           </Item>
 
           <TouchableOpacity onPress={() => {
-            this.props.navigation.navigate('SignInPage');
-          }}>
-            <Text  >
-             Registration</Text>
+            this.props.navigation.navigate('SignInPage'); }}>
+            <Text>
+             Registration
+             </Text>
           </TouchableOpacity>
+          
+          </Body>
           
 
 
