@@ -10,7 +10,7 @@ export default class SignInPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          loading: true
+          loading: true,
           username:"",
           password:""
          };
@@ -34,7 +34,7 @@ export default class SignInPage extends Component {
     }
 
     handleSubmit = () => {
-      Api.post("Login",{this.username,this.password}).then((Response) => {
+      Api.post("Login",{this.state.username,this.state.password}).then((Response) => {
         const user = JSON.parse(Response.data.d);
       }).catch((error) = > {
         console.log(error);
@@ -50,7 +50,7 @@ export default class SignInPage extends Component {
         <Header  style={{marginTop:StatusBar.currentHeight,backgroundColor:"#364051"}} />
         <Content>
           <Item error>
-            <Input placeholder='First Name' onChange={this.handleUserNameTextChanged} />
+            <Input placeholder='First Name' onChangeText={this.handleUserNameTextChanged} />
             <Icon name='checkmark-circle' />
           </Item>
 
@@ -65,7 +65,7 @@ export default class SignInPage extends Component {
           </Item>
 
           <Item success>
-            <Input placeholder='Password' onChange={this.handlePasswordChange}/>
+            <Input placeholder='Password' onChangeText={this.handlePasswordChange}/>
             <Icon name='checkmark-circle' />
           </Item>
 
