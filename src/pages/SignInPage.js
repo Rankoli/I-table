@@ -5,9 +5,9 @@ import Expo from "expo";
 import { StatusBar } from "react-native";
 import Api from '../../server/Api';
 
-export default class SignInPage extends Component {
+ export default class SignInPage extends Component {
   static navigationOptions = {
-    title: 'SignInPage',
+    title: 'Signin',
     headerStyle: {
       backgroundColor: '#364051',
     },
@@ -41,10 +41,14 @@ export default class SignInPage extends Component {
     }
 
 
+<<<<<<< HEAD
     handleSubmit = () => {
 <<<<<<< HEAD
       Api.post("Login",{this.state.username,this.state.password}).then((Response) => {
 =======
+=======
+    handleSubmit = async() => {
+>>>>>>> c8c6291ed022038a8324b35754abc45a0c5fcc5a
       const userName = this.state.username;
       const Fname=this.state.firstname;
       const Lname = this.state.lastname;
@@ -53,6 +57,7 @@ export default class SignInPage extends Component {
       const Picture = this.state.picture;
       const Password = this.state.password;
 
+<<<<<<< HEAD
       
       debugger;
      return Api.post('InsertUser',{userName, Fname, Lname, Age, Telephone, Picture, Password}).then((Response) => {
@@ -61,8 +66,19 @@ export default class SignInPage extends Component {
         const user = JSON.parse(Response.data.d);
       
       }).catch((error) => {
+=======
+      try {
+        const Response =  await Api.post('InsertUser',{userName, Fname, Lname, Age, Telephone, Picture, Password});
+        const Uu_id = JSON.parse(Response.data.d);
+
+       this.props.navigation.navigate('Camera',{Uu_id});
+      } catch (error) {
+>>>>>>> c8c6291ed022038a8324b35754abc45a0c5fcc5a
         console.log(error);
-      })
+        
+      }
+    
+      
     }
 
   render() {
