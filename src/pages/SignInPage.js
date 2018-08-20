@@ -5,9 +5,9 @@ import Expo from "expo";
 import { StatusBar } from "react-native";
 import Api from '../../server/Api';
 
-export default class SignInPage extends Component {
+ export default class SignInPage extends Component {
   static navigationOptions = {
-    title: 'SignInPage',
+    title: 'Signin',
     headerStyle: {
       backgroundColor: '#364051',
     },
@@ -41,7 +41,7 @@ export default class SignInPage extends Component {
     }
 
 
-    handleSubmit = () => {
+    handleSubmit = async() => {
       const userName = this.state.username;
       const Fname=this.state.firstname;
       const Lname = this.state.lastname;
@@ -50,15 +50,17 @@ export default class SignInPage extends Component {
       const Picture = this.state.picture;
       const Password = this.state.password;
 
-      
-      debugger;
-     return Api.post('InsertUser',{userName, Fname, Lname, Age, Telephone, Picture, Password}).then((Response) => {
-      
-        const user = JSON.parse(Response.data.d);
-      
-      }).catch((error) => {
+      try {
+        const Response =  await Api.post('InsertUser',{userName, Fname, Lname, Age, Telephone, Picture, Password});
+        const Uu_id = JSON.parse(Response.data.d);
+
+       this.props.navigation.navigate('Camera',{Uu_id});
+      } catch (error) {
         console.log(error);
-      })
+        
+      }
+    
+      
     }
 
   render() {

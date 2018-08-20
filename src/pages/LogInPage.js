@@ -7,7 +7,7 @@ import Api from '../../server/Api';
 
 export default class LogInPage extends Component {
   static navigationOptions = {
-    title: 'LogInPage',
+    title: 'Login',
     headerStyle: {
       backgroundColor: '#364051',
     },
