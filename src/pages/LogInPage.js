@@ -6,6 +6,16 @@ import { StatusBar, TouchableOpacity } from "react-native";
 import Api from '../../server/Api';
 
 export default class LogInPage extends Component {
+  static navigationOptions = {
+    title: 'LogInPage',
+    headerStyle: {
+      backgroundColor: '#364051',
+    },
+    headerTintColor: '#fff',
+    headerTitleStyle: {
+      fontWeight: 'bold',
+    },
+  };
 
     constructor(props) {
         super(props);
@@ -56,7 +66,7 @@ export default class LogInPage extends Component {
       }
     return (
       <Container>
-        <Header  style={{marginTop:StatusBar.currentHeight,backgroundColor:"#364051"}} />
+       
         <Content>
           <Item error>
             <Input placeholder='User Name' 
@@ -97,3 +107,5 @@ export default class LogInPage extends Component {
     );
   }
 }
+
+// <Header  style={{marginTop:StatusBar.currentHeight,backgroundColor:"#364051"}} />

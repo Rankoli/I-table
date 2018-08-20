@@ -6,6 +6,16 @@ import { StatusBar } from "react-native";
 import Api from '../../server/Api';
 
 export default class SignInPage extends Component {
+  static navigationOptions = {
+    title: 'SignInPage',
+    headerStyle: {
+      backgroundColor: '#364051',
+    },
+    headerTintColor: '#fff',
+    headerTitleStyle: {
+      fontWeight: 'bold',
+    },
+  };
 
     constructor(props) {
         super(props);
@@ -57,7 +67,7 @@ export default class SignInPage extends Component {
       }
     return (
       <Container>
-        <Header  style={{marginTop:StatusBar.currentHeight,backgroundColor:"#364051"}} />
+      
         <Content>
 
         <Item error>
@@ -128,3 +138,5 @@ export default class SignInPage extends Component {
     );
   }
 }
+
+// <Header  style={{marginTop:StatusBar.currentHeight,backgroundColor:"#364051"}} />
