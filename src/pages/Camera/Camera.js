@@ -1,6 +1,7 @@
 import React from 'react';
 import { Text, View, TouchableOpacity, Vibration, Image, Button,Alert } from 'react-native';
 import { Camera, Permissions, takePictureAsync } from 'expo';
+import { Footer, Right } from 'native-base';
 
 export default class CameraScreen extends React.Component {
   static navigationOptions = {
@@ -19,7 +20,7 @@ export default class CameraScreen extends React.Component {
     this.state = {
       hasCameraPermission: null,
       type: Camera.Constants.Type.back,
-      picUri: 'https://www.google.co.il/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwj30f_b6vvcAhVGyqQKHV1tAAIQjRx6BAgBEAU&url=http%3A%2F%2Fwww.stickpng.com%2Fimg%2Ficons-logos-emojis%2Fusers%2Fcircled-user-icon&psig=AOvVaw2DHPZbY-U1GJs__hVt3GbG&ust=1534861454754176',
+      picUri: 'https://cdn1.iconfinder.com/data/icons/social-messaging-productivity-1-1/128/gender-male2-512.png',
       pic64base:"",
       picName64base:"",
 
@@ -93,6 +94,24 @@ export default class CameraScreen extends React.Component {
           <Camera ref={ref => {
             this.camera = ref;
           }} style={{ flex: 1 }} type={this.state.type} >
+          <View style={{
+            flex: 1, padding: 50,
+            alignItems: 'center',
+            flexDirection: 'column',
+            justifyContent: 'space-between'
+          }}>
+            <Text style={{ fontSize: 20 }}>Reload at {new Date().toLocaleTimeString()}</Text>
+            <Button
+              onPress={this.btnPic}
+              title="btn Pic From OutSide"
+              style={{width:200 }}
+            />
+            <Image
+              style={{ width: 200, height: 200, borderRadius: 100, borderColor:'#008FEB'}}
+              source={{ uri: this.state.picUri }}
+            />
+          </View>
+          <Footer>
             <View
               style={{
                 flex: 1,
@@ -113,7 +132,7 @@ export default class CameraScreen extends React.Component {
                   });
                 }}>
                 <Text
-                  style={{ fontSize: 18, marginBottom: 10, color: 'white' }}>
+                  style={{ fontSize: 18, marginBottom: 10, color: 'black' }}>
                   {' '}Flip{' '}
                 </Text>
               </TouchableOpacity>
@@ -126,7 +145,7 @@ export default class CameraScreen extends React.Component {
                 }}
                 onPress={this.btnPic}>
                 <Text
-                  style={{ fontSize: 18, marginBottom: 10, color: 'white' }}>
+                  style={{ fontSize: 18, marginBottom: 10, color: 'black' }}>
                   {"      "}Pic{'    '}
                 </Text>
               </TouchableOpacity>
@@ -139,34 +158,21 @@ export default class CameraScreen extends React.Component {
               }}
               onPress={this.uploadBase64ToASMX}>
               <Text
-                style={{ fontSize: 18, marginBottom: 10, color: 'white' }}>
+                style={{ fontSize: 18, marginBottom: 10, color: 'black' }}>
                 {"        "}UPLOAD{'      '}
               </Text>
             </TouchableOpacity>
-
+            <Right>
               <Image
-                style={{ width: 50, height: 50 }}
+                style={{ width: 50, height: 50, borderRadius: 25 }}
                 source={{ uri: this.state.picUri }}
               />
+              </Right>
             </View>
+            </Footer>
          
-          <View style={{
-            flex: 1, padding: 50,
-            alignItems: 'center',
-            flexDirection: 'column',
-            justifyContent: 'space-between'
-          }}>
-            <Text style={{ fontSize: 20 }}>Reload at {new Date().toLocaleTimeString()}</Text>
-            <Button
-              onPress={this.btnPic}
-              title="btn Pic From OutSide"
-              style={{width:200 }}
-            />
-            <Image
-              style={{ width: 200, height: 250 }}
-              source={{ uri: this.state.picUri }}
-            />
-          </View>
+          
+          
           </Camera>
         </View>
       );
