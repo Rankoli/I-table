@@ -130,7 +130,7 @@ import Api from '../../server/Api';
 
           <Item>
           <Button onPress={this.handleSubmit}>
-            <Text>Sign In</Text>
+            <Text>NEXT</Text>
           </Button>
           </Item>
 

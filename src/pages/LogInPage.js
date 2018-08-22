@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Container, Header, Content, Item, Input, Icon , Button,Text,center, Body } from 'native-base';
 import {View} from 'react-native';
 import Expo from "expo";
-import { StatusBar, TouchableOpacity } from "react-native";
+import { StatusBar, TouchableOpacity,Image } from "react-native";
 import Api from '../../server/Api';
 
 export default class LogInPage extends Component {
@@ -22,7 +22,8 @@ export default class LogInPage extends Component {
         this.state = {
           loading: true,
           username:"",
-          password:""
+          password:"",
+          picUri: 'https://cdn1.iconfinder.com/data/icons/social-messaging-productivity-1-1/128/gender-male2-512.png'
          };
       }
 
@@ -58,7 +59,12 @@ export default class LogInPage extends Component {
       }).catch((error) => {
         console.log(error);
       })
-    }
+
+      
+       
+      
+        };
+    
 
   render() {
     if (this.state.loading) {
@@ -99,6 +105,11 @@ export default class LogInPage extends Component {
           </TouchableOpacity>
           
           </Body>
+
+          <Image
+          style={{ width: 50, height: 50, borderRadius: 25, borderWidth: 1 }}
+          source={{ uri: this.state.picUri }}
+        />
           
 
 
@@ -107,5 +118,6 @@ export default class LogInPage extends Component {
     );
   }
 }
+
 
 // <Header  style={{marginTop:StatusBar.currentHeight,backgroundColor:"#364051"}} />
