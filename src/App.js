@@ -6,6 +6,7 @@ import {Container} from 'native-base';
 import SignInPage from './pages/SignInPage';
 import LogInPage from './pages/LogInPage';
 import CameraScreen from './pages/Camera/Camera';
+import cuurentPictureScreen from './pages/Camera/currentPictureScreen';
 
 class App extends React.Component {
   render() {
@@ -22,6 +23,7 @@ const AppNavigator = createStackNavigator(
     LogInPage: { screen: LogInPage },
     SignInPage: { screen: SignInPage },
     Camera:{screen:CameraScreen},
+    Picture:{screen:cuurentPictureScreen}
 
   },
   {

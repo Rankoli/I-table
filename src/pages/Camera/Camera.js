@@ -23,6 +23,7 @@ export default class CameraScreen extends React.Component {
       picUri: 'https://cdn1.iconfinder.com/data/icons/social-messaging-productivity-1-1/128/gender-male2-512.png',
       pic64base:"",
       picName64base:"",
+     
 
 
     };
@@ -42,7 +43,10 @@ export default class CameraScreen extends React.Component {
       pic64base: photo.base64,
       picName64base: 'image1_' + new Date().getTime() + '.jpg',
       picUri: `data:image/jpg;base64,${photo.base64}`,
+     
+    
       });
+   
     }
 
 
@@ -61,10 +65,20 @@ export default class CameraScreen extends React.Component {
       body: JSON.stringify({
         base64img: this.state.pic64base,
         base64imgName: this.state.picName64base,
+        userID:this.props.navigation.getParam('Uu_id'),
       })
     })
     console.log(res);
     
+  }
+
+  showPic = async() => {
+
+    const cuurentPicture = this.state.picUri;
+    const base64image = this.state.pic64base;
+    const base64imgName= this.state.picName64base;
+    const userID= this.props.navigation.getParam('Uu_id', 'NO-ID');
+    this.props.navigation.navigate('Picture',{cuurentPicture,base64image,base64imgName, userID})
   }
 
 
@@ -107,7 +121,7 @@ export default class CameraScreen extends React.Component {
               style={{width:200 }}
             />
             <Image
-              style={{ width: 200, height: 200, borderRadius: 100, borderColor:'#008FEB'}}
+              style={{ width: 200, height: 200, borderWidth: 1, borderRadius: 100}}
               source={{ uri: this.state.picUri }}
             />
           </View>
@@ -162,12 +176,17 @@ export default class CameraScreen extends React.Component {
                 {"        "}UPLOAD{'      '}
               </Text>
             </TouchableOpacity>
+
+            
             <Right>
+            <TouchableOpacity onPress={this.showPic}>
               <Image
-                style={{ width: 50, height: 50, borderRadius: 25 }}
+                style={{ width: 50, height: 50, borderRadius: 25, borderWidth: 1 }}
                 source={{ uri: this.state.picUri }}
               />
+              </TouchableOpacity>
               </Right>
+             
             </View>
             </Footer>
          
