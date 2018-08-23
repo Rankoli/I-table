@@ -27,7 +27,8 @@ import Api from '../../server/Api';
           age:"",
           telephone:"",
           picture:"",
-          password:""
+          password:"",
+          email:""
          };
       }
 
@@ -43,15 +44,16 @@ import Api from '../../server/Api';
 
     handleSubmit = async() => {
       const userName = this.state.username;
-      const Fname=this.state.firstname;
-      const Lname = this.state.lastname;
-      const Age = this.state.age;
-      const Telephone = this.state.telephone;
-      const Picture = this.state.picture;
-      const Password = this.state.password;
-
+      const fName=this.state.firstname;
+      const lName = this.state.lastname;
+      const age = this.state.age;
+      const telephone = this.state.telephone;
+      const picture = this.state.picture;
+      const password = this.state.password;
+      const email = this.state.email;
+debugger;
       try {
-        const Response =  await Api.post('InsertUser',{userName, Fname, Lname, Age, Telephone, Picture, Password});
+        const Response =  await Api.post('Register',{userName, fName, lName, age, telephone, picture, password,email });
         const Uu_id = JSON.parse(Response.data.d);
 
        this.props.navigation.navigate('Camera',{Uu_id});
@@ -127,6 +129,14 @@ import Api from '../../server/Api';
             <Input placeholder='Confirm Password'/>
             <Icon name='checkmark-circle' />
           </Item>
+
+          <Item success>
+          <Input placeholder='Email'
+           onChangeText={(email) => this.setState({email})}
+           value={this.state.email} />
+          <Icon name='checkmark-circle' />
+        </Item>
+
 
           <Item>
           <Button onPress={this.handleSubmit}>

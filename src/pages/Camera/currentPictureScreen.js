@@ -73,8 +73,13 @@ export default class cuurentPictureScreen extends React.Component {
     const userID = this.props.navigation.getParam('userID');
     const  picName = this.props.navigation.getParam('base64imgName');
 
-
     console.log(cuurentPicture);
+    console.log(img64base);
+    console.log(picName);
+    console.log(userID);
+
+
+
     
    
       return (
