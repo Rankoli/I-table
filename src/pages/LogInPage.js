@@ -55,7 +55,7 @@ export default class LogInPage extends Component {
      return Api.post('Login',{userName, password}).then((Response) => {
         debugger;
         const user = JSON.parse(Response.data.d);
-      
+        this.setState({picUri: user.PicturePath})
       }).catch((error) => {
         console.log(error);
       })
