@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Header, Content, Item, Input, Icon , Button,Text } from 'native-base';
+import { Container, Header, Content, Item, Input, Icon , Button,Text,Toast,Roo  } from 'native-base';
 import {View,TouchableOpacity} from 'react-native';
 import Expo from "expo";
 import { StatusBar } from "react-native";
@@ -41,7 +41,7 @@ import Api from '../../server/Api';
         this.setState({ loading: false });
     }
 
-    
+
 
     handleSubmit = async() => {
       const userName = this.state.username;
@@ -51,11 +51,6 @@ import Api from '../../server/Api';
       const telephone = this.state.telephone;
       const password = this.state.password;
       const email = this.state.email;
-<<<<<<< HEAD
-//debugger;
-=======
-
->>>>>>> e0a275bdcc690e32b07c21ec7a16263a1844602f
       try {
         const Response =  await Api.post('Register',{userName, fName, lName, age, telephone, password,email });
         const Uu_id = JSON.parse(Response.data.d);
@@ -63,10 +58,15 @@ import Api from '../../server/Api';
 
         if(Uu_id === "User Name or Email is already exists!"){
           this.setState({error: true});
+          Toast.show({
+            text:Uu_id ,
+            buttonText: "Okay",
+            type: "danger"
+          })
         }else{
           this.props.navigation.navigate('Camera',{Uu_id});
         }
-      
+
       } catch (error) {
         console.log(error);
 
@@ -83,15 +83,9 @@ import Api from '../../server/Api';
       <Container>
 
         <Content>
-<<<<<<< HEAD
 
-        <Item error>
-            <Input placeholder='User Name'
-=======
-        
         <Item  success = {this.state.error ? false : true} error = {this.state.error ? true : false}>
-            <Input placeholder='User Name' 
->>>>>>> e0a275bdcc690e32b07c21ec7a16263a1844602f
+            <Input placeholder='User Name'
              onChangeText={(username) => this.setState({username})}
             value={this.state.username} />
             <Icon name='checkmark-circle' />
@@ -125,18 +119,7 @@ import Api from '../../server/Api';
             <Icon name='checkmark-circle' />
           </Item>
 
-<<<<<<< HEAD
-          <Item error>
-            <Input placeholder='Picture'
-             onChangeText={(picture) => this.setState({picture})}
-            value={this.state.picture} />
-            <TouchableOpacity onPress={() => {
-              this.props.navigation.navigate('Camera');
-            }}><Icon name='camera' /></TouchableOpacity>
-          </Item>
-=======
-         
->>>>>>> e0a275bdcc690e32b07c21ec7a16263a1844602f
+
 
           <Item success>
             <Input placeholder='Password'
@@ -163,6 +146,7 @@ import Api from '../../server/Api';
             <Text>NEXT</Text>
           </Button>
           </Item>
+
 
 
         </Content>

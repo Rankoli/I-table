@@ -1,117 +1,132 @@
-import React, { Component } from 'react';
-import { Container, Header, Content, Item, Input, Icon , Button,Text,center, Body } from 'native-base';
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {
+  Container,
+  Header,
+  Content,
+  Item,
+  Input,
+  Icon,
+  Button,
+  Text,
+  center,
+  Body
+} from 'native-base';
 import {View} from 'react-native';
 import Expo from "expo";
-import { StatusBar, TouchableOpacity,Image } from "react-native";
+import {StatusBar, TouchableOpacity, Image} from "react-native";
 import Api from '../../server/Api';
+import {startLogin} from '../actions/auth'
 
-export default class LogInPage extends Component {
+class LogInPage extends Component {
   static navigationOptions = {
     title: 'Login',
     headerStyle: {
-      backgroundColor: '#364051',
+      backgroundColor: '#364051'
     },
     headerTintColor: '#fff',
     headerTitleStyle: {
-      fontWeight: 'bold',
-    },
+      fontWeight: 'bold'
+    }
   };
 
-    constructor(props) {
-        super(props);
-        this.state = {
-          loading: true,
-          username:"",
-          password:"",
-          picUri: 'https://cdn1.iconfinder.com/data/icons/social-messaging-productivity-1-1/128/gender-male2-512.png'
-         };
-      }
+  constructor(props) {
+    super(props);
+    this.state = {
+      loading: true,
+      username: "",
+      password: "",
+      picUri: 'https://cdn1.iconfinder.com/data/icons/social-messaging-productivity-1-1/128/gen' +
+          'der-male2-512.png'
+    };
+  }
 
-    async componentWillMount() {
-        await Expo.Font.loadAsync({
-          'Roboto': require('native-base/Fonts/Roboto.ttf'),
-          'Roboto_medium': require('native-base/Fonts/Roboto_medium.ttf'),
-          'Ionicons': require('@expo/vector-icons/fonts/Ionicons.ttf'),
-        });
-        this.setState({ loading: false });
-    }
+  async componentWillMount() {
+    await Expo
+      .Font
+      .loadAsync({'Roboto': require('native-base/Fonts/Roboto.ttf'), 'Roboto_medium': require('native-base/Fonts/Roboto_medium.ttf'), 'Ionicons': require('@expo/vector-icons/fonts/Ionicons.ttf')});
+    this.setState({loading: false});
+  }
 
-    handleUserNameTextChanged = (e) => {
+  handleUserNameTextChanged = (e) => {
 
-      this.setState(() => ({username:e.target.value}));
-    }
+    this.setState(() => ({username: e.target.value}));
+  }
 
-    handlePasswordChange = (e) => {
+  handlePasswordChange = (e) => {
 
-      this.setState(() => ({password:e.target.value}));
-    }
+    this.setState(() => ({password: e.target.value}));
+  }
 
-    handleSubmit = () => {
-      const userName = this.state.username;
-      const password = this.state.password;
+  handleSubmit = () => {
 
+    //start login
+    this
+      .props
+      .startLogin(this.state.username, this.state.password)
 
-
-     return Api.post('Login',{userName, password}).then((Response) => {
-       // debugger;
-        const user = JSON.parse(Response.data.d);
-        this.setState({picUri: user.PicturePath})
-      }).catch((error) => {
-        console.log(error);
-      })
-
-
-
-
-        };
-
+  };
 
   render() {
     if (this.state.loading) {
-        return <Expo.AppLoading />;//123456
-      }
+      return <Expo.AppLoading/>; //123456
+    }
     return (
       <Container>
 
         <Content>
           <Item error>
-            <Input placeholder='User Name'
-             onChangeText={(username) => this.setState({username})}
-            value={this.state.username} />
-            <Icon name='checkmark-circle' />
+            <Input
+              placeholder='User Name'
+              onChangeText={(username) => this.setState({username})}
+              value={this.state.username}/>
+            <Icon name='checkmark-circle'/>
           </Item>
 
           <Item success>
-            <Input placeholder='Password'
-             onChangeText={(password) => this.setState({password})}
-             value={this.state.password} />
-            <Icon name='checkmark-circle' />
+            <Input
+              placeholder='Password'
+              onChangeText={(password) => this.setState({password})}
+              value={this.state.password}/>
+            <Icon name='checkmark-circle'/>
           </Item>
-
 
           <Body>
 
-          <Item>
-          <Button onPress={this.handleSubmit}>
-            <Text>Login</Text>
-          </Button>
-          </Item>
+            <Item>
+              <Button onPress={this.handleSubmit}>
+                <Text>Login</Text>
+              </Button>
+            </Item>
 
-          <TouchableOpacity style={{marginTop: 20, marginBottom: 10}}  onPress={() => {
-            this.props.navigation.navigate('SignInPage'); }}>
-            <Text>
-             Registration
-             </Text>
-          </TouchableOpacity>
+            <TouchableOpacity
+              style={{
+              marginTop: 20,
+              marginBottom: 10
+            }}
+              onPress={() => {
+              this
+                .props
+                .navigation
+                .navigate('SignInPage');
+            }}>
+              <Text>
+                Registration
+              </Text>
+            </TouchableOpacity>
 
           </Body>
 
           <Image
-          style={{ width: 50, height: 50, borderRadius: 25, borderWidth: 1 }}
-          source={{ uri: this.state.picUri }}
-        />
-
-
+            style={{
+            width: 50,
+            height: 50,
+            borderRadius: 25,
+            borderWidth: 1
+          }}
+            source={{
+            uri: this.state.picUri
+          }}/>
 
         </Content>
       </Container>
@@ -119,5 +134,17 @@ export default class LogInPage extends Component {
   }
 }
 
+const mapDispatchToProps = (dispatch) => ({
+  startLogin: (userName, password) => dispatch(startLogin(userName, password)),
+  logout: () => dispatch(logout())
+});
 
-// <Header  style={{marginTop:StatusBar.currentHeight,backgroundColor:"#364051"}} />
+const mapStateToProps = (state) => ({
+  isAuthenticated: !!state.auth.msg,
+  errorMassege: state.auth.msg
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(LogInPage);
+
+// <Header
+// style={{marginTop:StatusBar.currentHeight,backgroundColor:"#364051"}} />

@@ -2,19 +2,24 @@ import Expo from 'expo';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { createStackNavigator } from 'react-navigation';
-import {Container} from 'native-base';
+import {Container,Root} from 'native-base';
 import SignInPage from './pages/SignInPage';
 import LogInPage from './pages/LogInPage';
 import CameraScreen from './pages/Camera/Camera';
 import cuurentPictureScreen from './pages/Camera/currentPictureScreen';
+import configureStore from './store/configureStore';
+import { Provider } from "react-redux";
+
+
+const store = configureStore();
 
 class App extends React.Component {
 
   render() {
     return (
-              <Container>
+              <Provider store={store} >
               <AppNavigator />
-              </Container>
+              </Provider>
             );
   }
 }

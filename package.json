@@ -26,7 +26,10 @@
     "react": "16.4.1",
     "react-native": "^0.55.4",
     "react-native-camera": "^1.2.0",
+    "react-native-is-iphonex": "^1.0.1",
     "react-navigation": "^2.11.2",
-    "react-native-is-iphonex": "^1.0.1"
+    "redux-thunk": "^2.3.0",
+    "react-redux": "^5.0.7",
+    "redux": "^4.0.0"
   }
 }

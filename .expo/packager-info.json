@@ -1,14 +1,5 @@
 {
-<<<<<<< HEAD
   "expoServerPort": null,
   "packagerPort": null,
-  "packagerPid": null,
-=======
-  "expoServerPort": 19000,
-  "packagerPort": 19001,
-  "packagerPid": 18456,
->>>>>>> e0a275bdcc690e32b07c21ec7a16263a1844602f
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null
+  "packagerPid": null
 }
