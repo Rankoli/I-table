@@ -21,14 +21,14 @@ import Api from '../../server/Api';
         super(props);
         this.state = {
           loading: true,
-          username:"",
-          firstname:"",
-          lastname:"",
-          age:"",
-          telephone:"",
-          picture:"",
-          password:"",
-          email:""
+          username:"defult user",
+          firstname:"defult fname",
+          lastname:"defult lname",
+          age:"25",
+          telephone:"0545555555",
+          password:"1111",
+          email:"g@gmail.com",
+          error:false
          };
       }
 
@@ -41,6 +41,7 @@ import Api from '../../server/Api';
         this.setState({ loading: false });
     }
 
+    
 
     handleSubmit = async() => {
       const userName = this.state.username;
@@ -48,15 +49,20 @@ import Api from '../../server/Api';
       const lName = this.state.lastname;
       const age = this.state.age;
       const telephone = this.state.telephone;
-      const picture = this.state.picture;
       const password = this.state.password;
       const email = this.state.email;
-debugger;
-      try {
-        const Response =  await Api.post('Register',{userName, fName, lName, age, telephone, picture, password,email });
-        const Uu_id = JSON.parse(Response.data.d);
 
-       this.props.navigation.navigate('Camera',{Uu_id});
+      try {
+        const Response =  await Api.post('Register',{userName, fName, lName, age, telephone, password,email });
+        const Uu_id = JSON.parse(Response.data.d);
+        debugger;
+
+        if(Uu_id === "User Name or Email is already exists!"){
+          this.setState({error: true});
+        }else{
+          this.props.navigation.navigate('Camera',{Uu_id});
+        }
+      
       } catch (error) {
         console.log(error);
         
@@ -73,8 +79,8 @@ debugger;
       <Container>
       
         <Content>
-
-        <Item error>
+        
+        <Item  success = {this.state.error ? false : true} error = {this.state.error ? true : false}>
             <Input placeholder='User Name' 
              onChangeText={(username) => this.setState({username})}
             value={this.state.username} />
@@ -109,14 +115,7 @@ debugger;
             <Icon name='checkmark-circle' />
           </Item>
 
-          <Item error>
-            <Input placeholder='Picture' 
-             onChangeText={(picture) => this.setState({picture})}
-            value={this.state.picture} />
-            <TouchableOpacity onPress={() => {
-              this.props.navigation.navigate('Camera');
-            }}><Icon name='camera' /></TouchableOpacity>
-          </Item>
+         
 
           <Item success>
             <Input placeholder='Password'
@@ -130,7 +129,7 @@ debugger;
             <Icon name='checkmark-circle' />
           </Item>
 
-          <Item success>
+          <Item  success = {this.state.error ? false : true} error = {this.state.error ? true : false}>
           <Input placeholder='Email'
            onChangeText={(email) => this.setState({email})}
            value={this.state.email} />
