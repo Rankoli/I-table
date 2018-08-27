@@ -3,6 +3,7 @@ import { Text, View, TouchableOpacity, Vibration, Image, Button,Alert } from 're
 import { Camera, Permissions, takePictureAsync } from 'expo';
 import { Footer, Right, Body, Container } from 'native-base';
 
+
 export default class cuurentPictureScreen extends React.Component {
   static navigationOptions = {
     headerStyle: {
@@ -16,14 +17,19 @@ export default class cuurentPictureScreen extends React.Component {
 
   constructor(props) {
     super(props);
+  
+    console.log(this.props.navigation.state.params);
 
     this.state = {
+      
+      
       picUri: 'https://cdn1.iconfinder.com/data/icons/social-messaging-productivity-1-1/128/gender-male2-512.png',
-      pic64base:"",
-      picName64base:"",
-
+      pic64base:this.props.navigation.state.params.base64image,
+      picName64base:this.props.navigation.state.params.base64imgName,
+      userID: this.props.navigation.state.params.userID
 
     };
+  
   }
  
 
@@ -43,9 +49,9 @@ export default class cuurentPictureScreen extends React.Component {
       },
       method: 'POST',
       body: JSON.stringify({
-        base64img: img64base,
-        base64imgName: picName,
-        userID:userID,
+        base64img: this.state.pic64base,
+        base64imgName: this.state.picName64base,
+        userID:this.state.userID,
       })
     })
     console.log(res);
@@ -69,14 +75,8 @@ export default class cuurentPictureScreen extends React.Component {
 
   render() {
     const cuurentPicture = this.props.navigation.getParam('cuurentPicture', 'NO-ID');
-    const img64base = this.props.navigation.getParam('base64image');
-    const userID = this.props.navigation.getParam('userID');
-    const  picName = this.props.navigation.getParam('base64imgName');
-
-    console.log(cuurentPicture);
-    console.log(img64base);
-    console.log(picName);
-    console.log(userID);
+    
+  
 
 
 

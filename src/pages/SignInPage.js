@@ -21,14 +21,14 @@ import Api from '../../server/Api';
         super(props);
         this.state = {
           loading: true,
-          username:"",
-          firstname:"",
-          lastname:"",
-          age:"",
-          telephone:"",
-          picture:"",
-          password:"",
-          email:""
+          username:"defult user",
+          firstname:"defult fname",
+          lastname:"defult lname",
+          age:"25",
+          telephone:"0545555555",
+          password:"1111",
+          email:"g@gmail.com",
+          error:false
          };
       }
 
@@ -41,6 +41,7 @@ import Api from '../../server/Api';
         this.setState({ loading: false });
     }
 
+    
 
     handleSubmit = async() => {
       const userName = this.state.username;
@@ -48,15 +49,24 @@ import Api from '../../server/Api';
       const lName = this.state.lastname;
       const age = this.state.age;
       const telephone = this.state.telephone;
-      const picture = this.state.picture;
       const password = this.state.password;
       const email = this.state.email;
+<<<<<<< HEAD
 //debugger;
-      try {
-        const Response =  await Api.post('Register',{userName, fName, lName, age, telephone, picture, password,email });
-        const Uu_id = JSON.parse(Response.data.d);
+=======
 
-       this.props.navigation.navigate('Camera',{Uu_id});
+>>>>>>> e0a275bdcc690e32b07c21ec7a16263a1844602f
+      try {
+        const Response =  await Api.post('Register',{userName, fName, lName, age, telephone, password,email });
+        const Uu_id = JSON.parse(Response.data.d);
+        debugger;
+
+        if(Uu_id === "User Name or Email is already exists!"){
+          this.setState({error: true});
+        }else{
+          this.props.navigation.navigate('Camera',{Uu_id});
+        }
+      
       } catch (error) {
         console.log(error);
 
@@ -73,9 +83,15 @@ import Api from '../../server/Api';
       <Container>
 
         <Content>
+<<<<<<< HEAD
 
         <Item error>
             <Input placeholder='User Name'
+=======
+        
+        <Item  success = {this.state.error ? false : true} error = {this.state.error ? true : false}>
+            <Input placeholder='User Name' 
+>>>>>>> e0a275bdcc690e32b07c21ec7a16263a1844602f
              onChangeText={(username) => this.setState({username})}
             value={this.state.username} />
             <Icon name='checkmark-circle' />
@@ -109,6 +125,7 @@ import Api from '../../server/Api';
             <Icon name='checkmark-circle' />
           </Item>
 
+<<<<<<< HEAD
           <Item error>
             <Input placeholder='Picture'
              onChangeText={(picture) => this.setState({picture})}
@@ -117,6 +134,9 @@ import Api from '../../server/Api';
               this.props.navigation.navigate('Camera');
             }}><Icon name='camera' /></TouchableOpacity>
           </Item>
+=======
+         
+>>>>>>> e0a275bdcc690e32b07c21ec7a16263a1844602f
 
           <Item success>
             <Input placeholder='Password'
@@ -130,7 +150,7 @@ import Api from '../../server/Api';
             <Icon name='checkmark-circle' />
           </Item>
 
-          <Item success>
+          <Item  success = {this.state.error ? false : true} error = {this.state.error ? true : false}>
           <Input placeholder='Email'
            onChangeText={(email) => this.setState({email})}
            value={this.state.email} />

@@ -78,7 +78,7 @@ export default class CameraScreen extends React.Component {
     const base64image = this.state.pic64base;
     const base64imgName= this.state.picName64base;
     const userID= this.props.navigation.getParam('Uu_id', 'NO-ID');
-    this.props.navigation.navigate('Picture',{cuurentPicture,base64image,base64imgName, userID})
+    this.props.navigation.navigate('Picture',{cuurentPicture:cuurentPicture,base64image:base64image,base64imgName:base64imgName,userID:userID})
     console.log(cuurentPicture);
     console.log(base64image);
     console.log(base64imgName);
