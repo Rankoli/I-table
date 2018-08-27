@@ -9,6 +9,7 @@ import CameraScreen from './pages/Camera/Camera';
 import cuurentPictureScreen from './pages/Camera/currentPictureScreen';
 
 class App extends React.Component {
+
   render() {
     return (
               <Container>

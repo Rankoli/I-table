@@ -42,34 +42,8 @@ import Api from '../../server/Api';
     }
 
 
-<<<<<<< HEAD
-    handleSubmit = () => {
-<<<<<<< HEAD
-      Api.post("Login",{this.state.username,this.state.password}).then((Response) => {
-=======
-=======
     handleSubmit = async() => {
->>>>>>> c8c6291ed022038a8324b35754abc45a0c5fcc5a
       const userName = this.state.username;
-<<<<<<< HEAD
-      const Fname=this.state.firstname;
-      const Lname = this.state.lastname;
-      const Age = this.state.age;
-      const Telephone = this.state.telephone;
-      const Picture = this.state.picture;
-      const Password = this.state.password;
-
-<<<<<<< HEAD
-      
-      debugger;
-     return Api.post('InsertUser',{userName, Fname, Lname, Age, Telephone, Picture, Password}).then((Response) => {
-      
->>>>>>> 87dca35db6b8b4554f6fe5e6eb0066c8f97a8015
-        const user = JSON.parse(Response.data.d);
-      
-      }).catch((error) => {
-=======
-=======
       const fName=this.state.firstname;
       const lName = this.state.lastname;
       const age = this.state.age;
@@ -77,20 +51,18 @@ import Api from '../../server/Api';
       const picture = this.state.picture;
       const password = this.state.password;
       const email = this.state.email;
-debugger;
->>>>>>> d67c2e6617050af4d55b430bd4a14d246119fe09
+//debugger;
       try {
         const Response =  await Api.post('Register',{userName, fName, lName, age, telephone, picture, password,email });
         const Uu_id = JSON.parse(Response.data.d);
 
        this.props.navigation.navigate('Camera',{Uu_id});
       } catch (error) {
->>>>>>> c8c6291ed022038a8324b35754abc45a0c5fcc5a
         console.log(error);
-        
+
       }
-    
-      
+
+
     }
 
   render() {
@@ -99,24 +71,20 @@ debugger;
       }
     return (
       <Container>
-      
+
         <Content>
 
         <Item error>
-            <Input placeholder='User Name' 
+            <Input placeholder='User Name'
              onChangeText={(username) => this.setState({username})}
             value={this.state.username} />
             <Icon name='checkmark-circle' />
           </Item>
 
           <Item error>
-<<<<<<< HEAD
-            <Input placeholder='First Name' onChangeText={this.handleUserNameTextChanged} />
-=======
-            <Input placeholder='First Name' 
+            <Input placeholder='First Name'
              onChangeText={(firstname) => this.setState({firstname})}
             value={this.state.firstname} />
->>>>>>> 87dca35db6b8b4554f6fe5e6eb0066c8f97a8015
             <Icon name='checkmark-circle' />
           </Item>
 
@@ -135,14 +103,14 @@ debugger;
           </Item>
 
           <Item error>
-            <Input placeholder='Telephone' 
+            <Input placeholder='Telephone'
              onChangeText={(telephone) => this.setState({telephone})}
             value={this.state.telephone} />
             <Icon name='checkmark-circle' />
           </Item>
 
           <Item error>
-            <Input placeholder='Picture' 
+            <Input placeholder='Picture'
              onChangeText={(picture) => this.setState({picture})}
             value={this.state.picture} />
             <TouchableOpacity onPress={() => {
@@ -151,13 +119,9 @@ debugger;
           </Item>
 
           <Item success>
-<<<<<<< HEAD
-            <Input placeholder='Password' onChangeText={this.handlePasswordChange}/>
-=======
             <Input placeholder='Password'
              onChangeText={(password) => this.setState({password})}
              value={this.state.password} />
->>>>>>> 87dca35db6b8b4554f6fe5e6eb0066c8f97a8015
             <Icon name='checkmark-circle' />
           </Item>
 

@@ -42,7 +42,7 @@ export default class LogInPage extends Component {
     }
 
     handlePasswordChange = (e) => {
-  
+
       this.setState(() => ({password:e.target.value}));
     }
 
@@ -50,21 +50,21 @@ export default class LogInPage extends Component {
       const userName = this.state.username;
       const password = this.state.password;
 
-      
-    
+
+
      return Api.post('Login',{userName, password}).then((Response) => {
-        debugger;
+       // debugger;
         const user = JSON.parse(Response.data.d);
         this.setState({picUri: user.PicturePath})
       }).catch((error) => {
         console.log(error);
       })
 
-      
-       
-      
+
+
+
         };
-    
+
 
   render() {
     if (this.state.loading) {
@@ -72,10 +72,10 @@ export default class LogInPage extends Component {
       }
     return (
       <Container>
-       
+
         <Content>
           <Item error>
-            <Input placeholder='User Name' 
+            <Input placeholder='User Name'
              onChangeText={(username) => this.setState({username})}
             value={this.state.username} />
             <Icon name='checkmark-circle' />
@@ -97,20 +97,20 @@ export default class LogInPage extends Component {
           </Button>
           </Item>
 
-          <TouchableOpacity onPress={() => {
+          <TouchableOpacity style={{marginTop: 20, marginBottom: 10}}  onPress={() => {
             this.props.navigation.navigate('SignInPage'); }}>
             <Text>
              Registration
              </Text>
           </TouchableOpacity>
-          
+
           </Body>
 
           <Image
           style={{ width: 50, height: 50, borderRadius: 25, borderWidth: 1 }}
           source={{ uri: this.state.picUri }}
         />
-          
+
 
 
         </Content>

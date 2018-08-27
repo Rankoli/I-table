@@ -31,7 +31,7 @@ export default class GalleryScreen extends React.Component {
 
   saveToGallery = async () => {
     const photos = this.state.selected;
-    debugger;
+    //debugger;
 
     if (photos.length > 0) {
       const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
@@ -51,7 +51,7 @@ export default class GalleryScreen extends React.Component {
     }
   };
 
-  renderPhoto = fileName => 
+  renderPhoto = fileName =>
     <Photo
       key={fileName}
       uri={`${PHOTOS_DIR}/${fileName}`}
