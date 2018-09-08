@@ -24,7 +24,7 @@ class App extends React.Component {
   }
 }
 
-const AppNavigator = createStackNavigator(
+export const AppNavigator = createStackNavigator(
   {
     LogInPage: { screen: LogInPage },
     SignInPage: { screen: SignInPage },
