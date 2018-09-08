@@ -28,7 +28,7 @@ import validator from 'validator';
           username:"defult user",
           firstname:"defult fname",
           lastname:"defult lname",
-          age:"0",
+          age:0,
           telephone:"0545555555",
           password:"1111",
           confirmPass:'',
@@ -37,6 +37,8 @@ import validator from 'validator';
 
          };
       }
+
+     
 
     async componentWillMount() {
         await Expo.Font.loadAsync({
@@ -54,7 +56,7 @@ import validator from 'validator';
       const userName = this.state.username;
       const fName = this.state.firstname;
       const lName = this.state.lastname;
-      const age = this.state.age;
+      const age = this.state.age.toString();
       const telephone = this.state.telephone;
       const password = this.state.password;
       const email = this.state.email;
@@ -92,7 +94,6 @@ import validator from 'validator';
 
 
     }
-
   render() {
     if (this.state.loading) {
         return <Expo.AppLoading />;//123456
@@ -109,49 +110,49 @@ import validator from 'validator';
             <Icon name={this.state.error ?  'close-circle' : 'checkmark-circle' } />
           </Item>
 
-          <Item success>
+          <Item success = {this.state.firstname.length > 2 ? true : false} error = {this.state.firstname.length <= 2 ? true : false}>
             <Input placeholder='First Name'
              onChangeText={(firstname) => this.setState({firstname})}
               value={this.state.firstname} />
-            <Icon name='checkmark-circle' />
+            <Icon name= {this.state.firstname.length > 2 ? 'checkmark-circle' : 'close-circle'  } />
           </Item>
 
-          <Item success>
+          <Item success = {this.state.lastname.length > 2 ? true : false} error = {this.state.lastname.length <= 2 ? true : false}>
             <Input placeholder='LastName'
             onChangeText={(lastname) => this.setState({lastname})}
             value={this.state.lastname}/>
-            <Icon name='checkmark-circle' />
+            <Icon name= {this.state.lastname.length > 2 ? 'checkmark-circle' : 'close-circle'  } />
           </Item>
 
-          <Item success >
+          <Item success = {this.state.age >= 18 ? true : false} error = {this.state.age < 18 ? true : false} >
             <Input placeholder='Age'
             onChangeText={(age) => this.setState({age})}
             value={this.state.age.toString()}/>
-            <Icon name='checkmark-circle' />
+            <Icon name= {this.state.age >= 18 ? 'checkmark-circle' : 'close-circle'  } />
           </Item>
 
-          <Item success>
+          <Item success = {this.state.telephone.length === 10 ? true : false} error = {this.state.telephone.length <= 9 ? true : false}>
             <Input placeholder='Telephone'
              onChangeText={(telephone) => this.setState({telephone})}
             value={this.state.telephone} />
-            <Icon name='checkmark-circle' />
+            <Icon name= {this.state.telephone.length === 10 ? 'checkmark-circle' : 'close-circle'  } />
           </Item>
 
 
 
-          <Item success>
+          <Item success = {validator.matches(this.state.password,/(?=.*\d)(?=.*\W+)(?=.*[a-z])(?=.*[A-Z]).{7,12}/)} error = {!this.state.password.match(/(?=.*\d)(?=.*\W+)(?=.*[a-z])(?=.*[A-Z]).{7,12}/)}>
             <Input placeholder='Password'
              onChangeText={(password) => this.setState({password})}
              value={this.state.password} />
-            <Icon name='checkmark-circle' />
+            <Icon name= {this.state.password.match(/(?=.*\d)(?=.*\W+)(?=.*[a-z])(?=.*[A-Z]).{7,12}/) ? 'checkmark-circle' : 'close-circle' } />
           </Item>
 
-          <Item success>
+          <Item success = {validator.equals(this.state.confirmPass,this.state.password)} error = {!validator.equals(this.state.confirmPass,this.state.password)}>
             <Input placeholder='Confirm Password'
             onChangeText={(confirmPass) => this.setState({confirmPass})}
             value={this.state.confirmPass}
             />
-            <Icon name='checkmark-circle' />
+            <Icon name={validator.equals(this.state.confirmPass,this.state.password) ? 'checkmark-circle' : 'close-circle' } />
           </Item>
 
           <Item  success = {this.state.error ? false : true} error = {this.state.error ? true : false}>

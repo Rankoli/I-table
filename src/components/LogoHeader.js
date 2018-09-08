@@ -3,13 +3,18 @@ import { Container, Header, Content, Item, Input, Icon , Button,Text,center, Bod
 import {View} from 'react-native';
 import Expo from "expo";
 import { StatusBar, TouchableOpacity,Image } from "react-native";
-import Api from '../../server/Api';
+import { connect } from 'react-redux';
 
-export default class LogoTitle extends React.Component {
+
+
+
+ class LogoTitle extends React.Component {
     constructor(props) {
         super(props);
+        debugger;
         this.state = {
-         picUri:this.props.picUri
+         picUri:props.PicturePath ? props.PicturePath : 'https://cdn1.iconfinder.com/data/icons/social-messaging-productivity-1-1/128/gen' +
+         'der-male2-512.png'
         };
     }
     render() {
@@ -21,3 +26,9 @@ export default class LogoTitle extends React.Component {
         );
       }
   }
+
+  const mapStateToProps = (state) => ({
+    PicturePath: state.auth.PicturePath
+  });
+
+  export default connect(mapStateToProps)(LogoTitle)
