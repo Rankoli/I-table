@@ -15,7 +15,7 @@ import {
 import {View} from 'react-native';
 import Expo from "expo";
 import {StatusBar, TouchableOpacity, Image} from "react-native";
-import Api from '../../server/Api';
+
 import {startLogin} from '../actions/auth'
 
 class LogInPage extends Component {
