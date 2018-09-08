@@ -10,7 +10,9 @@ import {
   Button,
   Text,
   center,
-  Body
+  Body,
+  Label,
+  H1
 } from 'native-base';
 import {View} from 'react-native';
 import Expo from "expo";
@@ -74,36 +76,44 @@ class LogInPage extends Component {
     return (
       <Container>
 
-        <Content>
-          <Item error>
+      <H1 style={{
+        alignSelf:'center',
+
+
+      }}
+      > logo here! </H1>
+
+        <Content style={{marginTop:240}}>
+          <Item floatingLabel  >
+            <Label>Username</Label>
             <Input
-              placeholder='User Name'
               onChangeText={(username) => this.setState({username})}
               value={this.state.username}/>
-            <Icon name='checkmark-circle'/>
           </Item>
 
-          <Item success>
+          <Item floatingLabel>
+          <Label>Password</Label>
             <Input
-              placeholder='Password'
               onChangeText={(password) => this.setState({password})}
               value={this.state.password}/>
-            <Icon name='checkmark-circle'/>
+
           </Item>
 
-          <Body>
 
-            <Item>
-              <Button onPress={this.handleSubmit}>
-                <Text>Login</Text>
-              </Button>
-            </Item>
+          <Button block onPress={this.handleSubmit}>
+          <Text>Login</Text>
+          </Button>
+
+          <Body
+          style={{
+            marginTop: 20,
+            marginBottom: 10
+          }}
+          >
+
 
             <TouchableOpacity
-              style={{
-              marginTop: 20,
-              marginBottom: 10
-            }}
+
               onPress={() => {
               this
                 .props
@@ -117,16 +127,7 @@ class LogInPage extends Component {
 
           </Body>
 
-          <Image
-            style={{
-            width: 50,
-            height: 50,
-            borderRadius: 25,
-            borderWidth: 1
-          }}
-            source={{
-            uri: this.state.picUri
-          }}/>
+
 
         </Content>
       </Container>

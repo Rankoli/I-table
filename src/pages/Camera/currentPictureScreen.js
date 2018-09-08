@@ -17,28 +17,28 @@ export default class cuurentPictureScreen extends React.Component {
 
   constructor(props) {
     super(props);
-  
+
     console.log(this.props.navigation.state.params);
 
     this.state = {
-      
-      
+
+
       picUri: 'https://cdn1.iconfinder.com/data/icons/social-messaging-productivity-1-1/128/gender-male2-512.png',
       pic64base:this.props.navigation.state.params.base64image,
       picName64base:this.props.navigation.state.params.base64imgName,
       userID: this.props.navigation.state.params.userID
 
     };
-  
-  }
- 
 
-  
+  }
+
+
+
 
 
     uploadBase64ToASMX = async() => {
 
-     
+
       let urlAPI =
       'http://ruppinmobile.tempdomain.co.il/site02/WebService.asmx/ImgUpload';
 
@@ -55,49 +55,49 @@ export default class cuurentPictureScreen extends React.Component {
       })
     })
     console.log(res);
-    
+
   }
 
 
 
 
-    
+
     // let photo2 = await this.camera.takePictureAsync();
     // //alert(photo2.uri);
     // this.setState({ picUri: photo2.uri });
     // debugger;
     // Vibration.vibrate();
- 
-  
- 
 
- 
+
+
+
+
 
   render() {
     const cuurentPicture = this.props.navigation.getParam('cuurentPicture', 'NO-ID');
-    
-  
 
 
 
-    
-   
+
+
+
+
       return (
-     <View style={{ 
+     <View style={{
         flex: 1,
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center', }}>
         <Body>
         <View >
-           
+
             <Image
               style={{ width: 300, height: 300, borderWidth: 1, borderRadius: 100}}
               source={{ uri: cuurentPicture }}
             />
             </View>
         </Body>
-       
+
 
           <Footer>
             <View
@@ -106,7 +106,7 @@ export default class cuurentPictureScreen extends React.Component {
                 backgroundColor: 'transparent',
                 flexDirection: 'row',
               }}>
-             
+
 
               <TouchableOpacity
               style={{
@@ -121,7 +121,7 @@ export default class cuurentPictureScreen extends React.Component {
               </Text>
             </TouchableOpacity>
 
-            
+
             <Right>
             <TouchableOpacity>
               <Image
@@ -130,13 +130,13 @@ export default class cuurentPictureScreen extends React.Component {
               />
               </TouchableOpacity>
               </Right>
-             
+
             </View>
             </Footer>
         </View>
-     
-      
-  
+
+
+
       );
     }
   }

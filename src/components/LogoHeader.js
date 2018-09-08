@@ -11,7 +11,7 @@ import { connect } from 'react-redux';
  class LogoTitle extends React.Component {
     constructor(props) {
         super(props);
-        debugger;
+
         this.state = {
          picUri:props.PicturePath ? props.PicturePath : 'https://cdn1.iconfinder.com/data/icons/social-messaging-productivity-1-1/128/gen' +
          'der-male2-512.png'

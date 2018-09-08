@@ -19,17 +19,15 @@ class App extends React.Component {
   render() {
     return (
               <Provider store={store}>
+              <Root>
               <AppNavigator  />
+              </Root>
               </Provider>
             );
   }
 }
 
-<<<<<<< HEAD
- export const AppNavigator = createStackNavigator(
-=======
 export const AppNavigator = createStackNavigator(
->>>>>>> 51ebbffb48a17fe8498cf873022dfc5606fbb8c6
   {
     LogInPage: { screen: LogInPage },
     DashPage: { screen:DashboardPage},

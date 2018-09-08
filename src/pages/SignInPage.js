@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import { Container, Header, Content, Item, Input, Icon , Button,Text,Toast,Roo  } from 'native-base';
+import { Container, Header, Content, Item, Input, Icon , Button,Text,Toast,Spinner   } from 'native-base';
 import {View,TouchableOpacity} from 'react-native';
 import Expo from "expo";
 import { StatusBar } from "react-native";
@@ -38,7 +38,7 @@ import validator from 'validator';
          };
       }
 
-     
+
 
     async componentWillMount() {
         await Expo.Font.loadAsync({
@@ -65,15 +65,17 @@ import validator from 'validator';
 
       if(validator.isEmail(email) && !validator.isEmpty(userName)){
         try {
+            this.setState({loading:true});
             await this.props.startSignIn(userName,fName,lName,age,telephone,password,email);
+            this.setState({loading:false});
           const Uu_id = this.props.Uu_id;
-         debugger;
            if(!this.props.isRegister){
              this.setState({error: true});
              Toast.show({
                text: this.props.errorMassege,
                buttonText: "Okay",
-               type: "danger"
+               type: "danger",
+               duration: 8000
              })
            }else{
            this.props.navigation.navigate('Camera',{Uu_id});
@@ -84,11 +86,11 @@ import validator from 'validator';
 
          }
       }else {
-        //  Toast.show({
-        //    text: 'valid mail is require and user name!',
-        //    buttonText: "Okay",
-        //    type: "danger"
-        //  })
+         Toast.show({
+           text: 'valid mail is require and user name!',
+           buttonText: "Okay",
+           type: "danger"
+         })
       }
 
 
@@ -96,12 +98,16 @@ import validator from 'validator';
     }
   render() {
     if (this.state.loading) {
-        return <Expo.AppLoading />;//123456
+        return <Spinner color='blue' style={{
+          flex:1,
+          alignSelf:"center",
+
+        }} />;//123456
       }
     return (
       <Container>
 
-        <Content>
+        <Content padder>
 
         <Item  success = {this.state.error ? false : true} error = {this.state.error ? true : false}>
             <Input placeholder='User Name'
@@ -164,11 +170,11 @@ import validator from 'validator';
         </Item>
 
 
-          <Item>
-          <Button onPress={this.handleSubmit}>
+
+          <Button block onPress={this.handleSubmit} >
             <Text>NEXT</Text>
           </Button>
-          </Item>
+
 
 
 

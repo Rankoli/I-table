@@ -48,11 +48,11 @@ export const startLogin = (userName,password) => {
   export const startSignIn = (userName,fName,lName,age,telephone,password,email) => {
 
     return (dispatch) => {
-      debugger;
+
       return Api.post('Register',{userName,fName,lName,age,telephone,password,email}).then((Response) => {
 
         const Uu_id = JSON.parse(Response.data.d);
-        debugger;
+
         if(Uu_id === "User Name or Email is already exists!"){
           dispatch(error(Uu_id));
         }else{
