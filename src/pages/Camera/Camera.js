@@ -85,6 +85,11 @@ export default class CameraScreen extends React.Component {
     console.log(userID);
   }
 
+  skipButton = () => 
+  {
+    this.props.navigation.navigate('LogInPage');
+  }
+
 
     
     // let photo2 = await this.camera.takePictureAsync();
@@ -135,10 +140,11 @@ export default class CameraScreen extends React.Component {
                 flex: 1,
                 backgroundColor: 'transparent',
                 flexDirection: 'row',
+                justifyContent: 'space-between'
               }}>
               <TouchableOpacity
                 style={{
-                  flex: 0.2,
+                  flex: 0.5,
                   alignSelf: 'flex-end',
                   alignItems: 'center',
                 }}
@@ -151,45 +157,68 @@ export default class CameraScreen extends React.Component {
                 }}>
                 <Text
                   style={{ fontSize: 18, marginBottom: 10, color: 'black' }}>
-                  {' '}Flip{' '}
+                Flip
                 </Text>
               </TouchableOpacity>
 
               <TouchableOpacity
                 style={{
-                  flex: 0.2,
+                  flex: 0.5,
                   alignSelf: 'flex-end',
                   alignItems: 'center',
+                  justifyContent: 'space-between'
                 }}
                 onPress={this.btnPic}>
                 <Text
                   style={{ fontSize: 18, marginBottom: 10, color: 'black' }}>
-                  {"      "}Pic{'    '}
+                  Pic
                 </Text>
               </TouchableOpacity>
 
               <TouchableOpacity
               style={{
-                flex: 0.3,
+                flex: 0.5,
                 alignSelf: 'flex-end',
                 alignItems: 'center',
+                justifyContent: 'space-between'
               }}
               onPress={this.uploadBase64ToASMX}>
               <Text
                 style={{ fontSize: 18, marginBottom: 10, color: 'black' }}>
-                {"        "}UPLOAD{'      '}
+                UPLOAD
               </Text>
             </TouchableOpacity>
 
+            <TouchableOpacity
+            style={{
+              flex: 0.5,
+              alignSelf: 'flex-end',
+              alignItems: 'center',
+              justifyContent: 'space-between'
+            }}
+            onPress={this.skipButton}>
+            <Text
+              style={{ fontSize: 18, marginBottom: 10, color: 'black' }}>
+              SKIP
+            </Text>
+          </TouchableOpacity>
+
             
-            <Right>
-            <TouchableOpacity onPress={this.showPic}>
+           
+            <TouchableOpacity onPress={this.showPic}
+            style={{
+              flex: 0.5,
+              alignSelf: 'flex-end',
+              alignItems: 'center',
+              justifyContent: 'space-between'
+            }}
+            >
               <Image
                 style={{ width: 50, height: 50, borderRadius: 25, borderWidth: 1 }}
                 source={{ uri: this.state.picUri }}
               />
               </TouchableOpacity>
-              </Right>
+            
              
             </View>
             </Footer>

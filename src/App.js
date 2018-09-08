@@ -6,6 +6,7 @@ import {Container,Root} from 'native-base';
 import SignInPage from './pages/SignInPage';
 import LogInPage from './pages/LogInPage';
 import CameraScreen from './pages/Camera/Camera';
+import DashboardPage from './pages/DashboardPage';
 import cuurentPictureScreen from './pages/Camera/currentPictureScreen';
 import configureStore from './store/configureStore';
 import { Provider } from "react-redux";
@@ -27,6 +28,7 @@ class App extends React.Component {
 export const AppNavigator = createStackNavigator(
   {
     LogInPage: { screen: LogInPage },
+    DashPage: { screen:DashboardPage},
     SignInPage: { screen: SignInPage },
     Camera:{screen:CameraScreen},
     Picture:{screen:cuurentPictureScreen}

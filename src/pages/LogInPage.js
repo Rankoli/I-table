@@ -58,12 +58,12 @@ class LogInPage extends Component {
     this.setState(() => ({password: e.target.value}));
   }
 
-  handleSubmit = () => {
+  handleSubmit = async() => {
 
     //start login
-    this
-      .props
-      .startLogin(this.state.username, this.state.password)
+   await this.props.startLogin(this.state.username, this.state.password);
+   this.props.navigation.navigate('DashPage');
+
 
   };
 
