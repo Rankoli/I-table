@@ -2,6 +2,7 @@
 
 export default (state = {}, action) => {
     switch (action.type) {
+
       case 'LOGIN':
         return {
           Email: action.Email,
@@ -14,6 +15,7 @@ export default (state = {}, action) => {
           PhoneNumber:action.PhoneNumber,
           PicturePath: action.PicturePath
         };
+
       case 'LOGOUT':
         return {};
 
@@ -21,6 +23,12 @@ export default (state = {}, action) => {
         return {
           msg:action.msg
         };
+
+        case 'SIGNIN':
+        return {
+          Uu_id:action.Uu_id
+        };
+
       default:
         return state;
     }

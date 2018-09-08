@@ -25,7 +25,7 @@ export const startLogin = (userName,password) => {
       return Api.post("Login",{userName,password}).then((Response) => {
 
         const user = JSON.parse(Response.data.d);
-        debugger;
+
         if(user != null) {
 
             dispatch(login(user));
@@ -37,5 +37,30 @@ export const startLogin = (userName,password) => {
         console.log(error);
       })
   };
+  };
+
+  export const signIn = (Uu_id) => ({
+    type:'SIGNIN',
+    Uu_id
+  })
+
+
+  export const startSignIn = (userName,fName,lName,age,telephone,password,email) => {
+
+    return (dispatch) => {
+      debugger;
+      return Api.post('Register',{userName,fName,lName,age,telephone,password,email}).then((Response) => {
+
+        const Uu_id = JSON.parse(Response.data.d);
+        debugger;
+        if(Uu_id === "User Name or Email is already exists!"){
+          dispatch(error(Uu_id));
+        }else{
+          dispatch(signIn(Uu_id));
+        }
+      }).catch((error) => {
+        console.log(error);
+      })
+    };
   };
 
