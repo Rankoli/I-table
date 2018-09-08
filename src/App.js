@@ -18,13 +18,13 @@ class App extends React.Component {
   render() {
     return (
               <Provider store={store}>
-              <AppNavigator />
+              <AppNavigator  />
               </Provider>
             );
   }
 }
 
-const AppNavigator = createStackNavigator(
+ export const AppNavigator = createStackNavigator(
   {
     LogInPage: { screen: LogInPage },
     SignInPage: { screen: SignInPage },

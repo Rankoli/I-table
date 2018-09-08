@@ -106,7 +106,7 @@ import validator from 'validator';
             <Input placeholder='User Name'
              onChangeText={(username) => this.setState({username})}
             value={this.state.username} />
-            <Icon name='checkmark-circle' />
+            <Icon name={this.state.error ?  'close-circle' : 'checkmark-circle' } />
           </Item>
 
           <Item success>
