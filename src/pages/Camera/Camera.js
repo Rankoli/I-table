@@ -69,6 +69,7 @@ export default class CameraScreen extends React.Component {
       })
     })
     console.log(res);
+    this.props.navigation.navigate('LogInPage');
     
   }
 
